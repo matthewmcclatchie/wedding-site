@@ -4,6 +4,7 @@ import {
   RemovalPolicy,
   CfnOutput,
   aws_s3 as s3,
+  aws_s3_deployment as s3Deployment,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -16,6 +17,12 @@ export class WeddingSiteStack extends Stack {
       websiteIndexDocument: "index.html",
       autoDeleteObjects: true,
       removalPolicy: RemovalPolicy.DESTROY,
+    })
+
+    // S3 Deployment
+    new s3Deployment.BucketDeployment(this, "WeddingTestBucketDeployment", {
+      sources: [s3Deployment.Source.asset("../build")],
+      destinationBucket: weddingSiteBucket,
     })
 
     // Outputs
