@@ -10,6 +10,7 @@ import {
   aws_route53_targets as targets,
   aws_route53_patterns as patterns,
   aws_certificatemanager as certificateManager,
+  aws_secretsmanager as secretsManager,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -101,6 +102,14 @@ export class WeddingSiteStack extends Stack {
       targetDomain: SITE_URL,
       zone: hostedZone,
     })
+
+    // Secrets Manager
+    const weddingSiteGoogleApiCredentials =
+      secretsManager.Secret.fromSecretNameV2(
+        this,
+        "WeddingSiteGoogleApiCredentials",
+        "WeddingSiteGoogleApiCredentials"
+      )
 
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
