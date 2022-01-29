@@ -15,6 +15,7 @@ import {
   aws_secretsmanager as secretsManager,
   aws_lambda as lambda,
   aws_lambda_nodejs as lambdaNode,
+  aws_cloudwatch as cloudwatch,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -133,6 +134,35 @@ export class WeddingSiteStack extends Stack {
         timeout: Duration.seconds(5),
       }
     )
+
+    // CloudWatch Alarms
+    const RsvpHandlerErrors = rsvpHandler.metricErrors({
+      period: Duration.minutes(1),
+    })
+
+    new cloudwatch.Alarm(this, "RsvpHandlerErrorsAlarm", {
+      metric: RsvpHandlerErrors,
+      threshold: 1,
+      comparisonOperator:
+        cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+      evaluationPeriods: 1,
+      alarmDescription:
+        "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
+    })
+
+    const ContactHandlerErrors = contactHandler.metricErrors({
+      period: Duration.minutes(1),
+    })
+
+    new cloudwatch.Alarm(this, "ContactHandlerErrorsAlarm", {
+      metric: ContactHandlerErrors,
+      threshold: 1,
+      comparisonOperator:
+        cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+      evaluationPeriods: 1,
+      alarmDescription:
+        "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
+    })
 
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
