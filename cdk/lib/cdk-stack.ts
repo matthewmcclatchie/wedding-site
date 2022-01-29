@@ -13,6 +13,9 @@ export class WeddingSiteStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
+    // CloudFront Origin Access Identity
+    const cloudFrontOAI = new cloudfront.OriginAccessIdentity(this, "OAI")
+
     // S3 Bucket
     const weddingSiteBucket = new s3.Bucket(this, "WeddingSiteBucket", {
       websiteIndexDocument: "index.html",
@@ -20,15 +23,9 @@ export class WeddingSiteStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY,
     })
 
-    // S3 Deployment
-    new s3Deployment.BucketDeployment(this, "WeddingTestBucketDeployment", {
-      sources: [s3Deployment.Source.asset("../build")],
-      destinationBucket: weddingSiteBucket,
-    })
+    weddingSiteBucket.grantRead(cloudFrontOAI.grantPrincipal)
 
     // CloudFront
-    const cloudFrontOAI = new cloudfront.OriginAccessIdentity(this, "OAI")
-
     const distribution = new cloudfront.CloudFrontWebDistribution(
       this,
       "WeddingSiteDistribution",
@@ -44,6 +41,14 @@ export class WeddingSiteStack extends Stack {
         ],
       }
     )
+
+    // S3 Deployment
+    new s3Deployment.BucketDeployment(this, "WeddingTestBucketDeployment", {
+      sources: [s3Deployment.Source.asset("../build")],
+      destinationBucket: weddingSiteBucket,
+      distribution,
+      distributionPaths: ["/*"],
+    })
 
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
