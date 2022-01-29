@@ -43,7 +43,7 @@ export class WeddingSiteStack extends Stack {
     )
 
     // S3 Deployment
-    new s3Deployment.BucketDeployment(this, "WeddingTestBucketDeployment", {
+    new s3Deployment.BucketDeployment(this, "WeddingSiteBucketDeployment", {
       sources: [s3Deployment.Source.asset("../build")],
       destinationBucket: weddingSiteBucket,
       distribution,
