@@ -1,8 +1,10 @@
+import * as path from "path"
 import {
   Stack,
   StackProps,
   RemovalPolicy,
   CfnOutput,
+  Duration,
   aws_s3 as s3,
   aws_s3_deployment as s3Deployment,
   aws_cloudfront as cloudfront,
@@ -11,6 +13,8 @@ import {
   aws_route53_patterns as patterns,
   aws_certificatemanager as certificateManager,
   aws_secretsmanager as secretsManager,
+  aws_lambda as lambda,
+  aws_lambda_nodejs as lambdaNode,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -110,6 +114,25 @@ export class WeddingSiteStack extends Stack {
         "WeddingSiteGoogleApiCredentials",
         "WeddingSiteGoogleApiCredentials"
       )
+
+    // Lambda
+    const rsvpHandler = new lambdaNode.NodejsFunction(this, "RsvpHandler", {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      entry: path.join("lambda", "rsvp", "index.ts"),
+      handler: "handler",
+      timeout: Duration.seconds(5),
+    })
+
+    const contactHandler = new lambdaNode.NodejsFunction(
+      this,
+      "ContactHandler",
+      {
+        runtime: lambda.Runtime.NODEJS_14_X,
+        entry: path.join("lambda", "contact", "index.ts"),
+        handler: "handler",
+        timeout: Duration.seconds(5),
+      }
+    )
 
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
