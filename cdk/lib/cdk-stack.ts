@@ -17,6 +17,7 @@ import {
   aws_lambda_nodejs as lambdaNode,
   aws_cloudwatch as cloudwatch,
   aws_apigateway as apiGateway,
+  aws_logs as logs,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -123,6 +124,7 @@ export class WeddingSiteStack extends Stack {
       entry: path.join("lambda", "rsvp", "index.ts"),
       handler: "handler",
       timeout: Duration.seconds(5),
+      logRetention: logs.RetentionDays.ONE_DAY,
     })
 
     const contactHandler = new lambdaNode.NodejsFunction(
@@ -133,6 +135,7 @@ export class WeddingSiteStack extends Stack {
         entry: path.join("lambda", "contact", "index.ts"),
         handler: "handler",
         timeout: Duration.seconds(5),
+        logRetention: logs.RetentionDays.FIVE_DAYS,
       }
     )
 
