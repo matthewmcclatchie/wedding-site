@@ -16,6 +16,7 @@ import {
   aws_lambda as lambda,
   aws_lambda_nodejs as lambdaNode,
   aws_cloudwatch as cloudwatch,
+  aws_apigateway as apiGateway,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
@@ -164,6 +165,32 @@ export class WeddingSiteStack extends Stack {
         "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
     })
 
+    // API Gateway
+    const api = new apiGateway.RestApi(this, "WeddingSiteEndpoint", {
+      description: "Wedding site API Gateway",
+      defaultCorsPreflightOptions: {
+        allowHeaders: [
+          "Content-Type",
+          "X-Amz-Date",
+          "Authorization",
+          "X-Api-Key",
+        ],
+        allowMethods: ["OPTIONS", "GET", "POST"],
+        allowCredentials: true,
+        allowOrigins: [
+          "http://localhost:3000",
+          "https://d2o74iz73a72a3.cloudfront.net",
+          "https://stephandmattswedding.co.uk",
+        ],
+      },
+    })
+
+    const rsvp = api.root.addResource("rsvp")
+    rsvp.addMethod("POST", new apiGateway.LambdaIntegration(rsvpHandler))
+
+    const contact = api.root.addResource("contact")
+    contact.addMethod("POST", new apiGateway.LambdaIntegration(contactHandler))
+
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
       value: weddingSiteBucket.bucketDomainName,
@@ -175,6 +202,10 @@ export class WeddingSiteStack extends Stack {
 
     new CfnOutput(this, "CloudFrontUrl", {
       value: distribution.distributionDomainName,
+    })
+
+    new CfnOutput(this, "ApiGatewayUrl", {
+      value: api.url,
     })
   }
 }
