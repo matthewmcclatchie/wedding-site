@@ -1,5 +1,8 @@
+import * as AWS from "aws-sdk"
 import { APIGatewayProxyHandler } from "aws-lambda"
 import { GoogleSpreadsheet } from "google-spreadsheet"
+
+AWS.config.update({ region: "eu-west-2" })
 
 const ALLOWED_ORIGINS = [
   "http://localhost:3000",
@@ -8,6 +11,8 @@ const ALLOWED_ORIGINS = [
 ]
 const DOCUMENT_ID = "1zuAheoPzuwHer7MixlwCQy00ngz48Wfjar07vVbhCqs"
 const SHEET_ID = "1532144707"
+const SNS_TOPIC_ARN =
+  "arn:aws:sns:eu-west-2:139120963390:WeddingSiteStack-WeddingSiteRsvpTopic818B3EBA-17HRCQ1J9X069"
 
 const getAnyEmptyRequiredFields = (
   fields: Record<string, string>
@@ -102,6 +107,30 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         email,
       })
     }
+
+    const snsParams = {
+      Subject: "Somebody has filled out the RSVP form!",
+      Message: `
+        ${parsed[0].name} filled out the RSVP form.
+        ${parsed.length} rows were added.
+      `,
+      TopicArn: SNS_TOPIC_ARN,
+    }
+
+    const publishPromise = new AWS.SNS({ apiVersion: "2010-03-31" })
+      .publish(snsParams)
+      .promise()
+
+    publishPromise
+      .then((data) => {
+        console.log(
+          `${snsParams.Message} sent to the topic ${snsParams.TopicArn}`
+        )
+        console.log("MessageID: " + data.MessageId)
+      })
+      .catch((err) => {
+        console.error(err, err.stack)
+      })
 
     return {
       statusCode: 200,

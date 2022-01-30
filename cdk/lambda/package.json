@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1066.0",
     "google-spreadsheet": "^3.2.0"
   },
   "devDependencies": {

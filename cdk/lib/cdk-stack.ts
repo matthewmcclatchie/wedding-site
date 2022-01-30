@@ -18,10 +18,14 @@ import {
   aws_cloudwatch as cloudwatch,
   aws_apigateway as apiGateway,
   aws_logs as logs,
+  aws_iam as iam,
+  aws_sns as sns,
+  aws_sns_subscriptions as subscriptions,
 } from "aws-cdk-lib"
 import { Construct } from "constructs"
 
 const SITE_URL = "stephandmattswedding.co.uk"
+const EMAIL_TO = "mattandstephgetwed@gmail.com"
 
 export class WeddingSiteStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -135,8 +139,17 @@ export class WeddingSiteStack extends Stack {
       },
       bundling: {
         minify: true,
+        externalModules: ["aws-sdk"],
       },
     })
+
+    rsvpHandler.addToRolePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["SNS:Publish"],
+        resources: ["*"],
+      })
+    )
 
     const contactHandler = new lambdaNode.NodejsFunction(
       this,
@@ -205,6 +218,13 @@ export class WeddingSiteStack extends Stack {
     const contact = api.root.addResource("contact")
     contact.addMethod("POST", new apiGateway.LambdaIntegration(contactHandler))
 
+    // SNS
+    const rsvpTopic = new sns.Topic(this, "WeddingSiteRsvpTopic", {
+      displayName: "Wedding site",
+    })
+
+    rsvpTopic.addSubscription(new subscriptions.EmailSubscription(EMAIL_TO))
+
     // Outputs
     new CfnOutput(this, "WeddingSiteBucketDomainName", {
       value: weddingSiteBucket.bucketDomainName,
@@ -220,6 +240,10 @@ export class WeddingSiteStack extends Stack {
 
     new CfnOutput(this, "ApiGatewayUrl", {
       value: api.url,
+    })
+
+    new CfnOutput(this, "RsvpTopicArn", {
+      value: rsvpTopic.topicArn,
     })
   }
 }
