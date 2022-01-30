@@ -125,6 +125,17 @@ export class WeddingSiteStack extends Stack {
       handler: "handler",
       timeout: Duration.seconds(5),
       logRetention: logs.RetentionDays.ONE_DAY,
+      environment: {
+        CLIENT_EMAIL: weddingSiteGoogleApiCredentials
+          .secretValueFromJson("client_email")
+          .toString(),
+        PRIVATE_KEY: weddingSiteGoogleApiCredentials
+          .secretValueFromJson("private_key")
+          .toString(),
+      },
+      bundling: {
+        minify: true,
+      },
     })
 
     const contactHandler = new lambdaNode.NodejsFunction(
