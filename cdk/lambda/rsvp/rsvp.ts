@@ -1,14 +1,13 @@
-import * as AWS from "aws-sdk"
-import { APIGatewayProxyHandler } from "aws-lambda"
+import { SNS } from "aws-sdk"
+import { APIGatewayProxyHandler, SNSMessage } from "aws-lambda"
 import { GoogleSpreadsheet } from "google-spreadsheet"
-
-AWS.config.update({ region: "eu-west-2" })
 
 const ALLOWED_ORIGINS = [
   "http://localhost:3000",
   "https://d15bylhfejzrvc.cloudfront.net",
   "https://stephandmattswedding.co.uk",
-]
+] as const
+const REGION = "eu-west-2"
 const DOCUMENT_ID = "1zuAheoPzuwHer7MixlwCQy00ngz48Wfjar07vVbhCqs"
 const SHEET_ID = "1532144707"
 const SNS_TOPIC_ARN =
@@ -30,6 +29,25 @@ const getAnyEmptyRequiredFields = (
   }, [])
 }
 
+const publishToTopic = async (
+  params: Pick<SNSMessage, "Subject" | "Message" | "TopicArn">,
+  origin: typeof ALLOWED_ORIGINS[number]
+) => {
+  const sns = new SNS({ apiVersion: "2010-03-31", region: REGION })
+  const data = await sns.publish(params).promise()
+
+  console.log("MessageID: " + data.MessageId)
+
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": origin,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message: "RSVP - Success" }),
+  }
+}
+
 export const handler: APIGatewayProxyHandler = async (event) => {
   try {
     const origin = ALLOWED_ORIGINS.find(
@@ -40,7 +58,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       return {
         statusCode: 401,
         headers: {
-          "Access-Control-Allow-Origin": origin ?? false,
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
         body: JSON.stringify("Unauthorised request"),
@@ -117,29 +135,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       TopicArn: SNS_TOPIC_ARN,
     }
 
-    const publishPromise = new AWS.SNS({ apiVersion: "2010-03-31" })
-      .publish(snsParams)
-      .promise()
-
-    publishPromise
-      .then((data) => {
-        console.log(
-          `${snsParams.Message} sent to the topic ${snsParams.TopicArn}`
-        )
-        console.log("MessageID: " + data.MessageId)
-      })
-      .catch((err) => {
-        console.error(err, err.stack)
-      })
-
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": origin,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: "RSVP - Success", sheet: sheet.title }),
-    }
+    return await publishToTopic(snsParams, origin)
   } catch (error) {
     throw new Error(JSON.stringify(error))
   }
