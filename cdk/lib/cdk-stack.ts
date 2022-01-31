@@ -167,6 +167,14 @@ export class WeddingSiteStack extends Stack {
       }
     )
 
+    contactHandler.addToRolePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["ses:SendEmail", "ses:SendRawEmail"],
+        resources: ["*"],
+      })
+    )
+
     // CloudWatch Alarms
     const RsvpHandlerErrors = rsvpHandler.metricErrors({
       period: Duration.minutes(1),
