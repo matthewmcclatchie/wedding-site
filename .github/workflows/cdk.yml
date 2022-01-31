@@ -41,6 +41,10 @@ jobs:
         run: npm ci
         working-directory: cdk
 
+      - name: Install lambda dependencies
+        run: npm ci
+        working-directory: cdk/lambda
+
       - name: CDK synth
         run: cdk synth
         working-directory: cdk
