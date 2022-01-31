@@ -128,7 +128,7 @@ export class WeddingSiteStack extends Stack {
       entry: path.join("lambda", "rsvp", "index.ts"),
       handler: "handler",
       timeout: Duration.seconds(5),
-      logRetention: logs.RetentionDays.ONE_DAY,
+      logRetention: logs.RetentionDays.FIVE_DAYS,
       environment: {
         CLIENT_EMAIL: weddingSiteGoogleApiCredentials
           .secretValueFromJson("client_email")
@@ -160,6 +160,10 @@ export class WeddingSiteStack extends Stack {
         handler: "handler",
         timeout: Duration.seconds(5),
         logRetention: logs.RetentionDays.FIVE_DAYS,
+        bundling: {
+          minify: true,
+          externalModules: ["aws-sdk"],
+        },
       }
     )
 
