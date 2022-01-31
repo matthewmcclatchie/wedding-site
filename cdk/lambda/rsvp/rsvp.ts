@@ -30,21 +30,25 @@ const getAnyEmptyRequiredFields = (
 }
 
 const publishToTopic = async (
-  params: Pick<SNSMessage, "Subject" | "Message" | "TopicArn">,
-  origin: typeof ALLOWED_ORIGINS[number]
+  params: Pick<SNSMessage, "Subject" | "Message" | "TopicArn">
 ) => {
   const sns = new SNS({ apiVersion: "2010-03-31", region: REGION })
   const data = await sns.publish(params).promise()
 
   console.log("MessageID: " + data.MessageId)
+}
 
+const sendResponse = (
+  existingEmails: string[],
+  origin: typeof ALLOWED_ORIGINS[number]
+) => {
   return {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": origin,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message: "RSVP - Success" }),
+    body: JSON.stringify({ message: "RSVP - Success", existingEmails }),
   }
 }
 
@@ -102,6 +106,8 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
     const parsed = JSON.parse(body)
 
+    const existingEmails = []
+
     for (const entry of parsed) {
       const { name, email, attending, song, dietary, question } = entry
       const requiredFields = { name, email }
@@ -120,6 +126,17 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         }
       }
 
+      const rows = await sheet.getRows()
+
+      const emails = rows.map((entry) => entry.email)
+
+      const emailFound = emails.includes(email)
+
+      if (emailFound) {
+        existingEmails.push(email)
+        continue
+      }
+
       await sheet.addRow({
         name,
         email,
@@ -130,12 +147,25 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       Subject: "Somebody has filled out the RSVP form!",
       Message: `
         ${parsed[0].name} filled out the RSVP form.
-        ${parsed.length} rows were added.
+
+        ${
+          Boolean(parsed.length - existingEmails.length)
+            ? `Entries added: ${parsed.length - existingEmails.length}`
+            : "There were no new entries"
+        }
+
+        ${
+          existingEmails.length
+            ? `Existing entries: ${existingEmails.length}`
+            : "There were no existing entries"
+        }
       `,
       TopicArn: SNS_TOPIC_ARN,
     }
 
-    return await publishToTopic(snsParams, origin)
+    await publishToTopic(snsParams)
+
+    return sendResponse(existingEmails, origin)
   } catch (error) {
     throw new Error(JSON.stringify(error))
   }
