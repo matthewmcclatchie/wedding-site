@@ -1,4 +1,5 @@
 import { RsvpForm } from "./components/RsvpForm"
+import { ContactForm } from "./components/ContactForm"
 import "./App.css"
 
 function App() {
@@ -7,6 +8,12 @@ function App() {
     return (
       <div className="App">
         <RsvpForm />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ContactForm />
       </div>
     )
   }
