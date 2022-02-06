@@ -109,7 +109,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     const existingEmails = []
 
     for (const entry of parsed) {
-      const { name, email, attending, song, dietary, question } = entry
+      const { name, email, attending, song, meal, dietary, question } = entry
       const requiredFields = { name, email }
       const emptyRequiredFields = getAnyEmptyRequiredFields(requiredFields)
 
@@ -137,9 +137,17 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         continue
       }
 
+      const now = new Date()
+
       await sheet.addRow({
         name,
         email,
+        attending,
+        song,
+        meal,
+        dietary,
+        question,
+        date: now.toISOString().slice(0, 10),
       })
     }
 
