@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { FieldValues, FieldErrors, UseFormRegister } from "react-hook-form"
+import { SIMPLE_EMAIL_REGEX } from "../../utils/email"
 
 interface RsvpProps {
   id: string
@@ -35,9 +36,14 @@ export const Rsvp: React.FC<RsvpProps> = ({
         <label htmlFor={`${id}.email`}>Email</label>
         <input
           id={`${id}.email`}
-          {...register(`${id}.email`, { required: true })}
+          {...register(`${id}.email`, {
+            required: true,
+            pattern: SIMPLE_EMAIL_REGEX,
+          })}
         />
-        {errors?.email && "email is required"}
+
+        {errors?.email?.type === "required" && "email is required"}
+        {errors?.email?.type === "pattern" && "doesn't look quite right"}
       </div>
       <div>
         <label>Attending</label>
