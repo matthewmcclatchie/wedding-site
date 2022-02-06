@@ -121,7 +121,10 @@ export const Rsvp: React.FC<RsvpProps> = ({
 
           <div>
             <label htmlFor={`${id}.question`}>Question</label>
-            <input id={`${id}.question`} {...register(`${id}.question`)} />
+            <textarea
+              id={`${id}.question`}
+              {...register(`${id}.question`)}
+            ></textarea>
           </div>
         </>
       )}

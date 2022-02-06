@@ -22,6 +22,7 @@ export const ContactForm: React.FC = () => {
           <input id="name" {...register("name", { required: true })} />
           {errors?.name && "name is required"}
         </div>
+
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -34,6 +35,11 @@ export const ContactForm: React.FC = () => {
 
           {errors?.email?.type === "required" && "email is required"}
           {errors?.email?.type === "pattern" && "doesn't look quite right"}
+        </div>
+
+        <div>
+          <label htmlFor="question">Question</label>
+          <textarea id="question" {...register("question")}></textarea>
         </div>
 
         <button type="submit">click</button>
