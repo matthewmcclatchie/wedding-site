@@ -1,5 +1,6 @@
 import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
+// import { Map } from "./components/Map"
 import "./App.css"
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <RsvpForm />
         <br />
         <br />
+        <div>{/* <Map /> */}</div>
         <br />
         <br />
         <br />
