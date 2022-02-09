@@ -41,7 +41,7 @@ export const RsvpForm: React.FC = () => {
   }
 
   return (
-    <div className="App">
+    <div>
       <button onClick={addRsvp}>add rsvp</button>
 
       {fetchStatus === "pending" && <p>Is currently loading...</p>}
