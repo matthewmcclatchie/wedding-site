@@ -3,10 +3,14 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
-import "./fonts/playfair/playfairdisplay-bold-webfont.woff2"
-import "./fonts/playfair/playfairdisplay-bold-webfont.woff"
-import "./fonts/playfair/playfairdisplay-black-webfont.woff2"
-import "./fonts/playfair/playfairdisplay-black-webfont.woff"
+import WebFont from "webfontloader"
+
+WebFont.load({
+  custom: {
+    families: ["Playfair Display", "Sofia Pro"],
+    urls: ["./index.css"],
+  },
+})
 
 ReactDOM.render(
   <React.StrictMode>
