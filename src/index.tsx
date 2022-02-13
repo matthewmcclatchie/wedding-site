@@ -3,6 +3,10 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
+import "./fonts/playfair/playfairdisplay-bold-webfont.woff2"
+import "./fonts/playfair/playfairdisplay-bold-webfont.woff"
+import "./fonts/playfair/playfairdisplay-black-webfont.woff2"
+import "./fonts/playfair/playfairdisplay-black-webfont.woff"
 
 ReactDOM.render(
   <React.StrictMode>

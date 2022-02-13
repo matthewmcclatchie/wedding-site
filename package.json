@@ -53,8 +53,11 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{js,jsx,ts,tsx,json}": [
       "eslint --max-warnings=0",
+      "prettier --write"
+    ],
+    "src/**/*.{css,scss,md}": [
       "prettier --write"
     ]
   }

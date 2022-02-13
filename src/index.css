@@ -1,13 +1,48 @@
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./fonts/playfair/playfairdisplay-bold-webfont.woff2")
+      format("woff2"),
+    url("./fonts/playfair/playfairdisplay-bold-webfont.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./fonts/playfair/playfairdisplay-black-webfont.woff")
+      format("woff2"),
+    url("./fonts/playfair/playfairdisplay-black-webfont.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sofia Pro";
+  src: url("./fonts/sofia/sofia_pro_regular_az-webfont.woff2") format("woff2"),
+    url("./fonts/sofia/sofia_pro_regular_az-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sofia Pro";
+  src: url("./fonts/sofia/sofia_pro_light_az-webfont.woff2") format("woff2"),
+    url("./fonts/sofia/sofia_pro_light_az-webfont.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Sofia Pro";
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
