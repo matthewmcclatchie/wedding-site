@@ -1,0 +1,149 @@
+svg {
+  display: block;
+}
+
+form p {
+  margin-bottom: 0;
+}
+
+.wrap {
+  position: relative;
+}
+
+.field {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  font-size: 0.875rem;
+  color: #333333;
+}
+
+.errorText {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.toggle,
+.remove {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  border: none;
+  opacity: 0.25;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.toggle {
+  left: 0;
+  padding: 0.5rem;
+}
+
+.remove {
+  right: 0;
+  padding: 0.75rem;
+}
+
+.toggle:hover,
+.toggle:focus,
+.remove:hover,
+.remove:focus {
+  opacity: 1;
+}
+
+.toggle svg,
+.remove svg {
+  display: block;
+  fill: rgba(0, 0, 0, 0.75);
+}
+
+.toggle:hover svg,
+.toggle:focus svg,
+.remove:hover svg,
+.remove:focus svg {
+  fill: #e0d8c8;
+}
+
+.remove svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: rotate(90deg);
+}
+
+.fieldsCollapsed {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.fieldRadio {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fieldRadioLong {
+  flex-wrap: wrap;
+}
+
+.fieldRadioLabel {
+  line-height: 2.25rem;
+  margin-right: 1rem;
+}
+
+.fieldRadioInputs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 0 auto;
+}
+
+.fieldRadio input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type="radio"] + label {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+input[type="radio"] + label:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+input[type="radio"] + label:not(:last-of-type) {
+  margin-right: 1px;
+}
+
+input[type="radio"] + label:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #e0d8c8;
+  color: #656d55;
+}
+
+.field:last-of-type {
+  margin-bottom: 0;
+}
