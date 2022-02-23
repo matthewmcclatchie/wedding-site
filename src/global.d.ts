@@ -5,7 +5,6 @@ interface Rsvp {
   song?: string
   meal?: string
   dietary?: string
-  question?: string
 }
 
 type FetchStatus = "initial" | "pending" | "success" | "error"
