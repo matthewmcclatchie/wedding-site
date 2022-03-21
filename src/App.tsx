@@ -1,6 +1,6 @@
 import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
-// import { Map } from "./components/Map"
+import { Map } from "./components/Map"
 
 function App() {
   const siteReady = process.env.REACT_APP_SITE_READY === "true"
@@ -10,7 +10,7 @@ function App() {
         <RsvpForm />
         <br />
         <br />
-        <div>{/* <Map /> */}</div>
+        <Map />
         <br />
         <br />
         <br />
