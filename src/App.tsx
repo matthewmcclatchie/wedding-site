@@ -1,5 +1,6 @@
 import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
+import { Venue } from "./components/Venue"
 import { Map } from "./components/Map"
 
 function App() {
@@ -7,9 +8,8 @@ function App() {
   if (siteReady) {
     return (
       <div className="App">
+        <Venue />
         <RsvpForm />
-        <br />
-        <br />
         <Map />
         <br />
         <br />

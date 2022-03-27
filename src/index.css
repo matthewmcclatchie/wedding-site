@@ -50,8 +50,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Sofia Pro";
-
-  background-color: #656d55;
 }
 
 h1 {
@@ -62,4 +60,9 @@ h1 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
