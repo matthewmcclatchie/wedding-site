@@ -1,0 +1,70 @@
+a {
+  color: #1b73e7;
+  text-decoration: none;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.background {
+  overflow: hidden;
+  background-color: #fffff7;
+  background-image: url("../../../public/larkspur.jpg");
+  background-position: center center;
+}
+
+.wrapper {
+  padding: 2rem;
+  background-color: #fff;
+  width: 90%;
+  max-width: 960px;
+  margin: 8rem auto;
+  text-align: center;
+}
+
+.title {
+  font-family: "Playfair Display";
+  font-size: 2rem;
+  color: #dcbe9a;
+  margin: 0;
+}
+
+.info {
+  margin: 2rem auto;
+}
+
+.cta {
+  display: inline-block;
+  background-color: #faca9b;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 100px;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.cta:focus,
+.cta:hover {
+  background-color: #e4ae7a;
+}
+
+@media (min-width: 800px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .wrapper {
+    width: 90%;
+  }
+}

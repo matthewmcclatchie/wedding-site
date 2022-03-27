@@ -2,6 +2,7 @@ import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
 import { Venue } from "./components/Venue"
 import { Map } from "./components/Map"
+import { Gifts } from "./components/Gifts"
 
 function App() {
   const siteReady = process.env.REACT_APP_SITE_READY === "true"
@@ -11,6 +12,7 @@ function App() {
         <Venue />
         <RsvpForm />
         <Map />
+        <Gifts />
         <br />
         <br />
         <br />
