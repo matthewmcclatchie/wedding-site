@@ -1,3 +1,4 @@
+import { Nav } from "./components/Nav"
 import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
 import { Venue } from "./components/Venue"
@@ -9,22 +10,7 @@ function App() {
   if (siteReady) {
     return (
       <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <a href="#venue">Venue</a>
-            </li>
-            <li>
-              <a href="#rsvp">RSVP</a>
-            </li>
-            <li>
-              <a href="#accommodation">Accommodation</a>
-            </li>
-            <li>
-              <a href="#gifts">Gifts</a>
-            </li>
-          </ul>
-        </nav>
+        <Nav />
         <Venue />
         <RsvpForm />
         <Map />
