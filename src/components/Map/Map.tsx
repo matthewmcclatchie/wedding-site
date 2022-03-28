@@ -97,6 +97,48 @@ const geojson: FeatureCollection = {
         coordinates: [-1.7192224182406095, 54.44249530901062],
       },
     },
+    {
+      type: "Feature",
+      properties: {
+        type: "hotel",
+        place: "The Fleece, Richmond",
+        address: "5 Victoria Road, Richmond, DL10 4DW",
+        phone: "01748 503104",
+        website: "https://thefleeceyorkshire.co.uk/",
+        directions:
+          "https://www.google.com/maps/dir//The+Fleece+Hotel+Richmond,+5+Victoria+Rd.,+Richmond+DL10+4DW/@54.4041009,-1.7404938,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x487c1f99727bbbb5:0xa115200cbc820a9a!2m2!1d-1.7383177!2d54.4041353!3e0",
+        id: "the-fleece",
+        lat: -1.7382675664865292,
+        lng: 54.404253899210666,
+        venueTravelDistance: "7.5mi",
+        venueTravelTime: "15min",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [-1.7382675664865292, 54.404253899210666],
+      },
+    },
+    {
+      type: "Feature",
+      properties: {
+        type: "hotel",
+        place: "Bannatyne's Darlington",
+        address: "Bannatyne Hotel, Southend Avenue, Darlington, DL3 7HZ",
+        phone: "01325 365858",
+        website: "https://www.bannatyne.co.uk/hotel/darlington",
+        directions:
+          "https://www.google.com/maps/dir//Bannatyne+Health+Club+%26+Spa+Darlington,+Haughton+Rd,+Darlington+DL1+1SS/@54.4917697,-1.677071,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x487e9bcc1afb68e3:0x42a4ce67d35df82e!2m2!1d-1.5467063!2d54.528335",
+        id: "bannatyne-hotel",
+        lat: -1.546726969921183,
+        lng: 54.52849285634339,
+        venueTravelDistance: "9mi",
+        venueTravelTime: "16min",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [-1.546726969921183, 54.52849285634339],
+      },
+    },
   ],
 }
 
@@ -325,19 +367,39 @@ export const Map: React.FC = () => {
         </div>
 
         <div className={styles.footer}>
-          <div className={styles.wrapper}>
-            <p>There are also a number of Airbnbs available close by</p>
+          <p>
+            There are also a number of self-catering options close to the venue
+          </p>
 
+          <div className={styles.mapCtas}>
             <a
               href="https://www.airbnb.co.uk/s/Richmond--North-Yorkshire/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=april&flexible_trip_dates%5B%5D=march&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query=Richmond%2C%20North%20Yorkshire&place_id=ChIJWTRFEDEUfEgRsBs5LsG7QNU&source=structured_search_input_header&search_type=user_map_move&ne_lat=54.539113466061345&ne_lng=-1.4345783341724143&sw_lat=54.309816318742584&sw_lng=-1.9042438615161643&zoom=11&search_by_map=true"
               target="_blank"
               rel="noreferrer"
-              className={styles.airbnbButton}
+              className={styles.ctaAirbnb}
             >
               <svg viewBox="0 0 56.7 56.7" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50.307 38.208c-.245-.588-.49-1.227-.736-1.766-.392-.883-.785-1.718-1.128-2.502l-.05-.05A512.167 512.167 0 0 0 37.55 11.714l-.147-.294a99.101 99.101 0 0 1-1.178-2.307c-.49-.883-.98-1.815-1.766-2.698-1.57-1.963-3.827-3.042-6.231-3.042-2.454 0-4.662 1.08-6.28 2.944-.737.883-1.277 1.815-1.767 2.698-.393.785-.785 1.57-1.178 2.306l-.147.295c-3.778 7.36-7.458 14.818-10.844 22.177l-.049.099c-.343.785-.736 1.619-1.128 2.502-.245.54-.49 1.128-.736 1.766-.638 1.816-.834 3.533-.59 5.3a10.428 10.428 0 0 0 6.38 8.144c1.275.54 2.6.785 3.974.785.393 0 .883-.049 1.276-.098 1.619-.196 3.287-.736 4.906-1.668 2.012-1.129 3.926-2.748 6.085-5.103 2.159 2.355 4.121 3.974 6.084 5.103 1.619.932 3.287 1.472 4.906 1.668.393.05.884.098 1.276.098 1.374 0 2.748-.245 3.975-.785 3.434-1.373 5.839-4.514 6.378-8.145.393-1.717.196-3.434-.442-5.25zM28.18 40.76c-2.65-3.337-4.367-6.477-4.956-9.126-.245-1.129-.295-2.11-.147-2.993a4.758 4.758 0 0 1 .785-2.061c.932-1.325 2.502-2.159 4.318-2.159 1.815 0 3.434.785 4.317 2.159.393.589.688 1.276.786 2.06.147.884.098 1.914-.147 2.994-.59 2.6-2.307 5.74-4.956 9.126zm19.577 2.306c-.344 2.551-2.06 4.76-4.465 5.74-1.178.491-2.453.639-3.729.491-1.227-.147-2.453-.54-3.73-1.275-1.765-.982-3.532-2.503-5.593-4.76 3.24-3.974 5.202-7.605 5.937-10.843.344-1.521.393-2.895.246-4.171-.196-1.227-.638-2.355-1.325-3.336-1.521-2.208-4.072-3.484-6.918-3.484s-5.397 1.325-6.919 3.484c-.686.98-1.128 2.11-1.324 3.336a10.19 10.19 0 0 0 .245 4.17c.736 3.24 2.748 6.919 5.937 10.893-2.012 2.257-3.827 3.779-5.593 4.76-1.276.736-2.503 1.128-3.73 1.276a7.85 7.85 0 0 1-3.729-.491c-2.404-.982-4.12-3.19-4.465-5.741-.147-1.227-.049-2.454.442-3.827.148-.49.393-.982.638-1.57.343-.785.736-1.62 1.128-2.454l.05-.098c3.385-7.31 7.016-14.769 10.794-22.03l.148-.295c.392-.736.784-1.52 1.177-2.257.392-.785.834-1.52 1.374-2.159 1.03-1.177 2.404-1.815 3.925-1.815s2.895.638 3.925 1.816c.54.637.982 1.373 1.374 2.158.393.736.785 1.521 1.178 2.258l.147.294a650.794 650.794 0 0 1 10.745 22.08v.048c.393.785.736 1.669 1.129 2.454.245.588.49 1.08.638 1.57.392 1.276.54 2.502.343 3.778z" />
               </svg>
               View map on Airbnb
+            </a>
+
+            <a
+              href="https://www.togethertravel.co.uk/destinations/england/yorkshire-dales"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.ctaTogether}
+            >
+              Together Travel
+            </a>
+
+            <a
+              href="https://kipandnook.com/index.html"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.ctaKip}
+            >
+              Kip &amp; Nook
             </a>
           </div>
         </div>

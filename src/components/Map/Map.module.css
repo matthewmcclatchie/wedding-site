@@ -45,7 +45,6 @@ a {
   padding: 0;
   margin: 0;
   position: relative;
-  height: 500px;
   overflow-y: scroll;
   list-style-type: none;
   max-width: 500px;
@@ -177,32 +176,90 @@ a {
 }
 
 .footer {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
   text-align: center;
 }
 
-.airbnbButton {
-  background-color: #ff5a5f;
-  color: #ffffff;
-  display: inline-flex;
+.footer p {
+  margin-bottom: 2rem;
+}
+
+.mapCtas {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.mapCtas a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
   text-decoration: none;
   line-height: 1;
   border-radius: 4px;
-  padding: 0.75rem;
+  padding: 0.875rem;
   transition: background-color 0.2s ease-in-out;
   font-size: 1rem;
   font-weight: 900;
+  height: 3rem;
+  margin: 0 1rem;
 }
 
-.airbnbButton:focus,
-.airbnbButton:hover {
-  background-color: #e24f53;
+.mapCtas a:not(:last-of-type) {
+  margin-bottom: 1rem;
 }
 
-.airbnbButton svg {
+.ctaTogether {
+  background-color: #1f363f;
+}
+
+.ctaTogether:focus,
+.ctaTogether:hover {
+  background-color: #122127;
+}
+
+.ctaKip {
+  background-color: #3f5364;
+}
+
+.ctaKip:focus,
+.ctaKip:hover {
+  background-color: #26333e;
+}
+
+.ctaAirbnb {
+  background-color: #ff5a5f;
+}
+
+.ctaAirbnb svg {
   fill: #fff;
   width: 1.25rem;
   height: 1.25rem;
   margin-right: 0.5rem;
+}
+
+.ctaAirbnb:focus,
+.ctaAirbnb:hover {
+  background-color: #e24f53;
+}
+
+@media (min-width: 640px) {
+  .mapCtas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 640px;
+  }
+
+  .mapCtas a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .mapCtas a:not(:last-of-type) {
+    margin-bottom: 0;
+  }
 }
 
 @media (min-width: 800px) {
@@ -239,6 +296,7 @@ a {
     transform: translate(-1rem, -1rem);
     padding: 0.25rem 0.75rem;
     max-width: none;
+    height: 500px;
   }
 
   .accommodationItem {
