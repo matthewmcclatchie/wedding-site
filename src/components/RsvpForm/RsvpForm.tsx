@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { nanoid } from "nanoid"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Rsvp } from "../Rsvp"
 import { prepareRsvpData } from "../../utils/rsvp"
@@ -46,6 +46,10 @@ export const RsvpForm: React.FC = () => {
   const removeRsvp = (target: string) => {
     setRsvps(rsvps.filter((rsvp) => rsvp !== target))
   }
+
+  useEffect(() => {
+    addRsvp()
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className={styles.background}>
