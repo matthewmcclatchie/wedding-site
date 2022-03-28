@@ -5,7 +5,7 @@ export const Venue: React.FC = () => {
   useEffect(() => {}, [])
 
   return (
-    <div className={styles.background}>
+    <div id="venue" className={styles.background}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <h2 className={styles.title}>Middleton Lodge Estate</h2>

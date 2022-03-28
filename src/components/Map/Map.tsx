@@ -142,7 +142,7 @@ export const Map: React.FC = () => {
   }, [])
 
   return (
-    <div className={styles.background}>
+    <div id="accommodation" className={styles.background}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <h2 className={styles.title}>Accommodation</h2>

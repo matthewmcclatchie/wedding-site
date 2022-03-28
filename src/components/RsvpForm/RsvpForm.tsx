@@ -52,7 +52,7 @@ export const RsvpForm: React.FC = () => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section className={styles.background}>
+    <section id="rsvp" className={styles.background}>
       <div className={styles.wrapper}>
         <div className={styles.intro}>
           <h2 className={styles.title}>RSVP</h2>

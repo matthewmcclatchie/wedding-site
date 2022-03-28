@@ -2,7 +2,7 @@ import styles from "./Gifts.module.css"
 
 export const Gifts: React.FC = () => {
   return (
-    <div className={styles.background}>
+    <div id="gifts" className={styles.background}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <h2 className={styles.title}>Gifts</h2>

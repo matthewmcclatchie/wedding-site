@@ -9,6 +9,22 @@ function App() {
   if (siteReady) {
     return (
       <div className="App">
+        <nav>
+          <ul>
+            <li>
+              <a href="#venue">Venue</a>
+            </li>
+            <li>
+              <a href="#rsvp">RSVP</a>
+            </li>
+            <li>
+              <a href="#accommodation">Accommodation</a>
+            </li>
+            <li>
+              <a href="#gifts">Gifts</a>
+            </li>
+          </ul>
+        </nav>
         <Venue />
         <RsvpForm />
         <Map />
