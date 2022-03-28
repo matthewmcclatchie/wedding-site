@@ -10,19 +10,22 @@ a {
 
 .header {
   max-width: 640px;
+  margin: 0 auto 2rem auto;
 }
 
 .wrapper {
   width: 90%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 3rem auto;
 }
 
 .title {
   font-family: "Playfair Display";
-  font-size: 3rem;
+  font-size: 2rem;
   color: #e3c39d;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  text-align: center;
 }
 
 .map {
@@ -73,6 +76,10 @@ a {
 .accommodationItemSelected:focus .accommodationItemNameMore,
 .accommodationItemSelected:hover .accommodationItemNameMore {
   display: none;
+}
+
+.accommodationItemHeader {
+  width: 100%;
 }
 
 .accommodationItemHeader ul {
@@ -201,6 +208,12 @@ a {
 @media (min-width: 800px) {
   .wrapper {
     width: 95%;
+    margin: 4rem auto;
+  }
+
+  .title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
   }
 
   .structure {
@@ -210,8 +223,7 @@ a {
   }
 
   .header {
-    margin-top: 4rem;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
   }
 
   .map {
@@ -262,7 +274,7 @@ a {
 
   .footer {
     margin-top: 6rem;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
   }
 }
 

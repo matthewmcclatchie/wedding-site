@@ -1,12 +1,7 @@
 .background {
+  background-color: #656d55;
   color: #e0d8c8;
-}
-
-button,
-label,
-input,
-p {
-  font-size: 0.875rem;
+  overflow: hidden;
 }
 
 button,
@@ -15,10 +10,13 @@ input {
 }
 
 .wrapper {
-  min-height: 75vh;
   width: 90%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 4rem auto;
+}
+
+.intro {
+  margin-bottom: 2rem;
 }
 
 .title {
@@ -120,10 +118,12 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 8rem auto;
   }
 
   .intro {
     flex: 0 0 38%;
+    margin-bottom: 0;
   }
 
   .main {
