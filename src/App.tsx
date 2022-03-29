@@ -3,6 +3,7 @@ import { RsvpForm } from "./components/RsvpForm"
 import { ContactForm } from "./components/ContactForm"
 import { Venue } from "./components/Venue"
 import { Map } from "./components/Map"
+import { Day } from "./components/Day"
 import { Gifts } from "./components/Gifts"
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Venue />
         <RsvpForm />
         <Map />
+        <Day />
         <Gifts />
         <br />
         <br />

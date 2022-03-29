@@ -50,8 +50,18 @@ export const Nav: React.FC = () => {
           </a>
         </li>
         <li>
+          <a onClick={handleLinkClick} href="#order">
+            The day
+          </a>
+        </li>
+        <li>
           <a onClick={handleLinkClick} href="#gifts">
             Gifts
+          </a>
+        </li>
+        <li>
+          <a onClick={handleLinkClick} href="#contact">
+            Contact
           </a>
         </li>
       </ul>
