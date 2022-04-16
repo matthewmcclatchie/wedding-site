@@ -244,24 +244,6 @@ a {
   background-color: #e24f53;
 }
 
-@media (min-width: 640px) {
-  .mapCtas {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 640px;
-  }
-
-  .mapCtas a {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .mapCtas a:not(:last-of-type) {
-    margin-bottom: 0;
-  }
-}
-
 @media (min-width: 800px) {
   .wrapper {
     width: 95%;
