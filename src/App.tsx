@@ -17,9 +17,6 @@ function App() {
         <Map />
         <Day />
         <Gifts />
-        <br />
-        <br />
-        <br />
         <ContactForm />
       </div>
     )
