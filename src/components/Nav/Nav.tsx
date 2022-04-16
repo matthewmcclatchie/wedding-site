@@ -59,11 +59,6 @@ export const Nav: React.FC = () => {
             Gifts
           </a>
         </li>
-        <li>
-          <a onClick={handleLinkClick} href="#contact">
-            Contact
-          </a>
-        </li>
       </ul>
     </nav>
   )
