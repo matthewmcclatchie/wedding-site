@@ -1,0 +1,30 @@
+.wrapper {
+  padding: 4rem 0;
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.wrapper p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.emoji {
+  line-height: 1;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper a {
+  color: inherit;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.1s ease-in-out;
+}
+
+.wrapper a:focus,
+.wrapper a:hover {
+  border-bottom: 2px solid #ff6766;
+}
