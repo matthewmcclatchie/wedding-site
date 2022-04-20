@@ -5,7 +5,7 @@
   right: 0;
   background-color: #fff;
   z-index: 10;
-  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
 }
 
 .trigger {
@@ -48,7 +48,7 @@
 }
 
 .navOpen {
-  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
 }
 
 .navOpen ul {
