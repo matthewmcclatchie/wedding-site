@@ -10,7 +10,7 @@ export const Venue: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>Middleton Lodge Estate</h2>
           <p>
-            Kneeton Lane, Middleton Tyas, Richmond, North Yorkshite, DL10 6NJ
+            Kneeton Lane, Middleton Tyas, Richmond, North Yorkshire, DL10 6NJ
           </p>
         </div>
 
