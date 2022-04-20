@@ -61,3 +61,11 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.mapboxgl-popup-content {
+  font-family: "Sofia Pro";
+  line-height: 1;
+  padding: 0.75rem !important;
+  font-weight: 600;
+  color: #333;
+}

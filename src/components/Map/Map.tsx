@@ -146,7 +146,7 @@ export const Map: React.FC = () => {
   const [latLng, setLatLng] = useState<number[]>([
     -1.6588797440500005, 54.456662454641595,
   ])
-  const [zoom, setZoom] = useState<number[]>([12])
+  const [zoom, setZoom] = useState<number[]>([10])
   const [currentHotel, setCurrentHotel] = useState<any>()
 
   const handleCircleClick = (event: any) => {
@@ -207,8 +207,8 @@ export const Map: React.FC = () => {
 
         <div className={styles.structure}>
           <div className={styles.map}>
-            <div className={styles.placeholderMap}>MAP GOES HERE</div>
-            {/* <Mapbox
+            {/* <div className={styles.placeholderMap}>MAP GOES HERE</div> */}
+            <Mapbox
               style="mapbox://styles/mapbox/streets-v8" // eslint-disable-line react/style-prop-object
               zoom={zoom}
               pitch={[50]}
@@ -231,23 +231,20 @@ export const Map: React.FC = () => {
                     "match",
                     ["get", "type"],
                     "hotel",
-                    "#83D6DE",
+                    "#F04903",
                     "venue",
-                    "#F3D89F",
+                    "#FEC606",
                     "#ccc",
                   ],
                   "circle-radius": [
                     "match",
                     ["get", "type"],
                     "hotel",
-                    8,
+                    12,
                     "venue",
                     12,
                     8,
                   ],
-                  "circle-stroke-color": "rgba(255, 255, 255, 0.25)",
-                  "circle-stroke-width": 5,
-                  "circle-opacity": 1,
                 }}
                 circleOnClick={handleCircleClick}
               />
@@ -257,7 +254,7 @@ export const Map: React.FC = () => {
                   {currentHotel.place}
                 </Popup>
               )}
-            </Mapbox> */}
+            </Mapbox>
           </div>
 
           <div className={styles.main}>
