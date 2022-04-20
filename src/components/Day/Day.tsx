@@ -24,7 +24,7 @@ export const Day: React.FC = () => {
               </span>
               <span>1.30pm</span>
             </h3>
-            <p>Evyerone will be seated in the ceremony space.</p>
+            <p>Everyone will be seated and the ceremony will start promptly.</p>
           </li>
 
           <li>
