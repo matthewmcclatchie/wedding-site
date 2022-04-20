@@ -8,7 +8,7 @@ const event = {
   description: "Wedding and Reception at Middleton Lodge Estate",
   startTime: "2022-10-09T12:30:00",
   endTime: "2022-10-09T23:59:00",
-  location: `Middleton Lodge Estate \\, DL10 6NJ`,
+  location: `Middleton Lodge Estate\\, Kneeton Lane\\, Richmond\\, North Yorkshire\\, DL10 6NJ`,
   url: "https://stephandmattswedding.co.uk/",
 }
 
