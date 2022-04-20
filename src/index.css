@@ -52,11 +52,6 @@ body {
   font-family: "Sofia Pro";
 }
 
-h1 {
-  font-family: "Playfair Display";
-  font-size: clamp(1rem, -0.875rem + 8.333vw, 5rem);
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
