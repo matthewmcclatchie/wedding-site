@@ -1,4 +1,5 @@
 import { Nav } from "./components/Nav"
+import { Hero } from "./components/Hero"
 import { RsvpForm } from "./components/RsvpForm"
 import { Footer } from "./components/Footer"
 import { Venue } from "./components/Venue"
@@ -12,6 +13,7 @@ function App() {
     return (
       <div className="App">
         <Nav />
+        <Hero />
         <Venue />
         <RsvpForm />
         <Map />
