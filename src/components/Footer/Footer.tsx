@@ -1,6 +1,6 @@
-import styles from "./ContactForm.module.css"
+import styles from "./Footer.module.css"
 
-export const ContactForm: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <div id="contact" className={styles.background}>
       <div className={styles.wrapper}>
@@ -17,4 +17,4 @@ export const ContactForm: React.FC = () => {
   )
 }
 
-export default ContactForm
+export default Footer

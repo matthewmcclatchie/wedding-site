@@ -1,6 +1,6 @@
 import { Nav } from "./components/Nav"
 import { RsvpForm } from "./components/RsvpForm"
-import { ContactForm } from "./components/ContactForm"
+import { Footer } from "./components/Footer"
 import { Venue } from "./components/Venue"
 import { Map } from "./components/Map"
 import { Day } from "./components/Day"
@@ -17,7 +17,7 @@ function App() {
         <Map />
         <Day />
         <Gifts />
-        <ContactForm />
+        <Footer />
       </div>
     )
   }
