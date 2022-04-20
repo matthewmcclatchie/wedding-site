@@ -9,8 +9,9 @@ a {
 }
 
 .header {
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto 2rem auto;
+  text-align: center;
 }
 
 .wrapper {
@@ -25,7 +26,6 @@ a {
   color: #e3c39d;
   margin-bottom: 1rem;
   margin-top: 0;
-  text-align: center;
 }
 
 .map {
