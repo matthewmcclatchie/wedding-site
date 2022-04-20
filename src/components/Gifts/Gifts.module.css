@@ -16,11 +16,15 @@ p {
 }
 
 .wrapper {
-  padding: 2rem;
+  padding: 2rem 3rem;
   background-color: #fff;
   width: 90%;
   max-width: 960px;
   margin: 8rem auto;
+}
+
+.title,
+.footer {
   text-align: center;
 }
 
