@@ -1,26 +1,25 @@
-a {
-  color: #1b73e7;
-  text-decoration: none;
-}
-
-p {
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
 .background {
   overflow: hidden;
   background-color: #fffff7;
   background-image: url("../../../public/larkspur.jpg");
-  background-position: center center;
 }
 
 .wrapper {
-  padding: 2rem 3rem;
+  padding: 2rem;
   background-color: #fff;
   width: 90%;
   max-width: 960px;
-  margin: 8rem auto;
+  margin: 6rem auto;
+}
+
+.wrapper p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.wrapper a {
+  color: #1b73e7;
+  text-decoration: none;
 }
 
 .title,
@@ -58,6 +57,11 @@ p {
 }
 
 @media (min-width: 800px) {
+  .wrapper {
+    padding: 2rem 3rem;
+    margin: 8rem auto;
+  }
+
   .title {
     font-size: 3rem;
   }
