@@ -3,7 +3,6 @@ import classNames from "classnames"
 import { FeatureCollection } from "geojson"
 import ReactMapboxGl, { GeoJSONLayer, Popup, Image } from "react-mapbox-gl"
 
-import "mapbox-gl/dist/mapbox-gl.css"
 import styles from "./Map.module.css"
 
 const Mapbox: any = ReactMapboxGl({
