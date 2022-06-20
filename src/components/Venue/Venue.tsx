@@ -33,11 +33,11 @@ export const Venue: React.FC = () => {
 
         <div className={styles.about}>
           <p>
-            Middleton Lodge Estate sits in 200 acres of its very own 17th
-            century parkland. Over the past seven years, the Georgian country
-            retreat has been given a new lease of life, preserving its history
-            and carefully restoring the original buildings into characterful,
-            yet contemporary, spaces.
+            Middleton Lodge Estate sits in 200 acres of 17th century parkland.
+            Over the past seven years, the Georgian country retreat has been
+            given a new lease of life, preserving its history and carefully
+            restoring the original buildings into characterful, yet
+            contemporary, spaces.
           </p>
           <p>
             It was the mix of old and new that we fell in love with when we came
@@ -47,8 +47,8 @@ export const Venue: React.FC = () => {
           </p>
           <p>
             The Estate offers beautifully designed bedrooms, all-day dining at
-            the Coach House, treatment rooms, a brand new spa (opening summer
-            this year) as well as the opportunity to enjoy the surrounding
+            the Coach House, treatment rooms, a brand new spa (opening this
+            Summer) as well as the opportunity to enjoy the surrounding
             landscape and beautiful Yorkshire countryside.
           </p>
           <p>We hope you love it as much as we do!</p>

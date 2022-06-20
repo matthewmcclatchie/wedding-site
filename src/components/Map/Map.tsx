@@ -258,14 +258,14 @@ export const Map: React.FC = () => {
           </p>
 
           <p>
-            There are plenty of hotels, bed &amp; breakfasts and self-catering
-            options situated a short distance from the venue, with both Richmond
-            and Darlington less than 15 minutes drive away.
+            There are plenty of other hotels, bed &amp; breakfasts and
+            self-catering options situated a short distance from the venue, with
+            both Richmond and Darlington less than 15 minutes drive away.
           </p>
 
           <p>
-            The map below shows a list of accommodation options, their distance
-            from the venue and contact details.
+            Below you'll find a selection of accommodation options, their
+            distance from the venue and contact details.
           </p>
         </div>
 
@@ -423,7 +423,7 @@ export const Map: React.FC = () => {
 
         <div className={styles.footer}>
           <p>
-            There are also a number of self-catering options close to the venue
+            There are also a number of self-catering options close to the venue.
           </p>
 
           <div className={styles.mapCtas}>

@@ -9,45 +9,43 @@ export const Gifts: React.FC = () => {
         </div>
 
         <div className={styles.info}>
-          <p>Oh hey! Just a little note on gifts...</p>
+          <p>A little note on gifts...</p>
           <p>
-            Having our closest friends and family with us to celebrate on our
-            wedding day is all we need and we really cannot wait. We really
-            appreciate that some of you are travelling a{" "}
-            <strong>
-              <em>very</em>
-            </strong>{" "}
-            long way to be with us and it really does mean the world - so thank
-            you so much.
+            Having our closest friends and family with us to celebrate our
+            wedding is all we need and we really cannot wait. We appreciate that
+            some of you are travelling a <em>very</em> long way to be with us
+            and it really does mean the world.
           </p>
           <p>
-            In terms of <em>things...</em> we've lived together (😮 out of
-            wedlock!) for a long time now and are fortunate enough to have
-            pretty much everything that we need to get by.
-          </p>
-          <p>So...</p>
-          <p>
-            You'll know that we love to travel and experience new things, so
-            have decided that for a honeymoon, we'd like to do a road-trip
-            across California. Neither of us have been to part of America before
-            and it feels like a once in a lifetime opportunity for us. We've got
-            a good idea of what it will cost and we're funding it ourselves.
+            In terms of things... we've lived together (😮 out of wedlock!) for
+            a long time now and are fortunate enough to have pretty much
+            everything that we need to get by.
           </p>
           <p>
-            You being there with us on the day is more than enough. Should
-            anybody <em>really</em> want to send a gift, then any contribution
-            toward our trip would be heartfeltly appreciated. We hope to have a
-            truly unforgetable time and anything on top of what we're saving for
-            would honestly be a massive bonus for us.
+            We both love travel and have booked our honeymoon for straight after
+            the wedding, a road-trip across California.
           </p>
-          <p>Thank you very much x</p>
+          <p>
+            If you do wish to buy us a gift, we have put together a gift list of
+            a few things that we hope we'll get lots of use out of at home,
+            especially in the future once we're able to move house.
+          </p>
+          <p>
+            In addition, we have included some contributions towards experiences
+            which we hope will make our honeymoon a trip we'll never forget.
+          </p>
         </div>
 
-        {/* <div className={styles.footer}>
-          <a href="#" target="_blank" rel="noreferrer" className={styles.cta}>
-            Add to travel fund
+        <div className={styles.footer}>
+          <a
+            href="https://www.weddingshop.com/GiftList/mattandsteph"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.cta}
+          >
+            View our gift list
           </a>
-        </div> */}
+        </div>
       </div>
     </div>
   )

@@ -13,6 +13,9 @@ export const Day: React.FC = () => {
             <p>
               <strong>Please arrive by 12.30pm</strong>
             </p>
+            <p>
+              <strong>Dress code: Lounge suits</strong>
+            </p>
           </div>
         </div>
 
@@ -24,7 +27,11 @@ export const Day: React.FC = () => {
               </span>
               <span>1.30pm</span>
             </h3>
-            <p>Everyone will be seated and the ceremony will start promptly.</p>
+            <p>Please head to the Gin Terrace on arrival. </p>
+            <p>
+              Everyone will be shown to the ceremony space and seated at around
+              1pm.
+            </p>
           </li>
 
           <li>
@@ -39,7 +46,8 @@ export const Day: React.FC = () => {
             </p>
             <p>
               Weather-permitting we'll enjoy the walled gardens. There are fire
-              pits to keep everyone warm!
+              pits to keep everyone warm and plenty of space indoors if the
+              weather isn't on our side!
             </p>
           </li>
 
@@ -51,7 +59,7 @@ export const Day: React.FC = () => {
               <span>3.30pm</span>
             </h3>
             <p>We'll take our seats to dine side-by-side in the Fig House.</p>
-            <p>Speeches will take place between each course.</p>
+            <p>Speeches will take place between courses.</p>
           </li>
 
           <li>
@@ -61,10 +69,13 @@ export const Day: React.FC = () => {
               </span>
               <span>7.30pm</span>
             </h3>
-            <p>After dinner, tables will be cleared to make spce to dance!</p>
+            <p>After dinner, we'll hit the dancefloor!</p>
             <p>
               We've got an awesome band lined up, followed by tunes until
-              midnight.
+              midnight. <br />
+              <em>
+                <small>(Thank you Jonathan!)</small>
+              </em>
             </p>
           </li>
         </ul>

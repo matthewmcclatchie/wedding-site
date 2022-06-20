@@ -57,10 +57,13 @@ export const RsvpForm: React.FC = () => {
         <div className={styles.intro}>
           <h2 className={styles.title}>RSVP</h2>
           <p>
-            We'd love to have our numbers confirmed by{" "}
-            <strong>June 2022</strong>.
+            We'd love to have our numbers confirmed by the beginning of{" "}
+            <strong>August.</strong>
           </p>
-          <p>Please respond for each member of your party in the form.</p>
+          <p>
+            Please respond for each member of your party in the form, so that we
+            can confirm final numbers and any dietary requirements.
+          </p>
           <p>Contact Matt or Steph if you have any problems.</p>
           <p>We can't wait to see you!</p>
         </div>
