@@ -49,7 +49,7 @@ export const Venue: React.FC = () => {
             The Estate offers beautifully designed bedrooms, all-day dining at
             the Coach House, treatment rooms, a brand new spa (opening summer
             this year) as well as the opportunity to enjoy the surrounding
-            landscape and beautiful Yorkshite countryside.
+            landscape and beautiful Yorkshire countryside.
           </p>
           <p>We hope you love it as much as we do!</p>
         </div>
