@@ -62,6 +62,10 @@ a {
   transition: color 0.2s ease-in-out;
 }
 
+.accommodationItem:last-of-type {
+  border-bottom: none;
+}
+
 .accommodationItem:focus,
 .accommodationItem:hover {
   color: rgba(0, 0, 0, 0.75);

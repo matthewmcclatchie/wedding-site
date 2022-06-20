@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import classNames from "classnames"
 import { FeatureCollection } from "geojson"
-import ReactMapboxGl, { GeoJSONLayer, Popup } from "react-mapbox-gl"
+import ReactMapboxGl, { GeoJSONLayer, Popup, Image } from "react-mapbox-gl"
 
 import "mapbox-gl/dist/mapbox-gl.css"
 import styles from "./Map.module.css"
@@ -101,7 +101,70 @@ const geojson: FeatureCollection = {
       type: "Feature",
       properties: {
         type: "hotel",
-        place: "The Fleece, Richmond",
+        place: "Fox Hall Inn",
+        address: "East Layton, Richmond, DL11 7PW",
+        phone: "01325 718 303",
+        website: "https://foxhallinn.co.uk/",
+        directions:
+          "https://www.google.com/maps/dir//Fox+Hall+Inn,+East+Layton,+Richmond+DL11+7PW/@54.4774535,-1.7763577,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x487c222b0eb9800f:0xf9c5c48606fd9212!2m2!1d-1.774169!2d54.4774535!3e0?authuser=0&hl=en",
+        id: "fox-hall-inn",
+        lat: -1.774249466369801,
+        lng: 54.4776186928047,
+        venueTravelDistance: "6.6mi",
+        venueTravelTime: "9min",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [-1.774249466369801, 54.4776186928047],
+      },
+    },
+    {
+      type: "Feature",
+      properties: {
+        type: "hotel",
+        place: "The Kings Head Hotel",
+        address: "Market Place, Richmond, DL10 4HS",
+        phone: "01748 850 220",
+        website: "https://kingsheadrichmond.co.uk/",
+        directions:
+          "https://www.google.com/maps/dir//The+Kings+Head+Hotel,+10+Market+Pl,+Richmond+DL10+4HS/@54.4035567,-1.739382,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x487c1f99affc3d7b:0xd954e1316d7bc23c!2m2!1d-1.7372468!2d54.4035107!3e0?authuser=0&hl=en",
+        id: "the-kings-head-hotel",
+        lat: -1.73720941080032,
+        lng: 54.40360978212778,
+        venueTravelDistance: "6.2mi",
+        venueTravelTime: "13min",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [-1.73720941080032, 54.40360978212778],
+      },
+    },
+    {
+      type: "Feature",
+      properties: {
+        type: "hotel",
+        place: "Rockliffe Hall",
+        address: "Hurworth on Tees, Darlington, County Durham, DL2 2DU",
+        phone: "01325 729 999",
+        website: "https://www.rockliffehall.com/",
+        directions:
+          "https://www.google.com/maps/dir//Rockliffe+Hall,+Hurworth-on-Tees,+Darlington+DL2+2DU/@54.4785271,-1.5783137,14z/data=!4m9!4m8!1m0!1m5!1m1!1s0x487e99058a01b7d7:0xd2f158a3d6f84d2!2m2!1d-1.5453596!2d54.4785134!3e0",
+        id: "rockliffe-hall",
+        lat: -1.5456551089487112,
+        lng: 54.47999818891542,
+        venueTravelDistance: "7.1mi",
+        venueTravelTime: "14min",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [-1.5456551089487112, 54.47999818891542],
+      },
+    },
+    {
+      type: "Feature",
+      properties: {
+        type: "hotel",
+        place: "The Fleece",
         address: "5 Victoria Road, Richmond, DL10 4DW",
         phone: "01748 503104",
         website: "https://thefleeceyorkshire.co.uk/",
@@ -122,7 +185,7 @@ const geojson: FeatureCollection = {
       type: "Feature",
       properties: {
         type: "hotel",
-        place: "Bannatyne's Darlington",
+        place: "Bannatyne's",
         address: "Bannatyne Hotel, Southend Avenue, Darlington, DL3 7HZ",
         phone: "01325 365858",
         website: "https://www.bannatyne.co.uk/hotel/darlington",
@@ -146,7 +209,7 @@ export const Map: React.FC = () => {
   const [latLng, setLatLng] = useState<number[]>([
     -1.6588797440500005, 54.456662454641595,
   ])
-  const [zoom, setZoom] = useState<number[]>([10])
+  const [zoom, setZoom] = useState<number[]>([10.5])
   const [currentHotel, setCurrentHotel] = useState<any>()
 
   const handleCircleClick = (event: any) => {
@@ -196,18 +259,18 @@ export const Map: React.FC = () => {
 
           <p>
             There are plenty of hotels, bed &amp; breakfasts and self-catering
-            options situated a short distance from the venue.
+            options situated a short distance from the venue, with both Richmond
+            and Darlington less than 15 minutes drive away.
           </p>
 
           <p>
-            The map below shows a selection of accommodation options, their
-            distance to the venue as well as contact details.
+            The map below shows a list of accommodation options, their distance
+            from the venue and contact details.
           </p>
         </div>
 
         <div className={styles.structure}>
           <div className={styles.map}>
-            {/* <div className={styles.placeholderMap}>MAP GOES HERE</div> */}
             <Mapbox
               style="mapbox://styles/mapbox/streets-v8" // eslint-disable-line react/style-prop-object
               zoom={zoom}
@@ -224,29 +287,24 @@ export const Map: React.FC = () => {
                 setZoom([event.style.z])
               }}
             >
+              <Image id={"map-pin"} url={"map-pin.png"} />
+              <Image id={"map-pin-gold"} url={"map-pin-gold.png"} />
               <GeoJSONLayer
                 data={geojson}
-                circlePaint={{
-                  "circle-color": [
+                symbolLayout={{
+                  "icon-image": [
                     "match",
                     ["get", "type"],
                     "hotel",
-                    "#F04903",
+                    "map-pin",
                     "venue",
-                    "#FEC606",
-                    "#ccc",
+                    "map-pin-gold",
+                    "map-pin",
                   ],
-                  "circle-radius": [
-                    "match",
-                    ["get", "type"],
-                    "hotel",
-                    12,
-                    "venue",
-                    12,
-                    8,
-                  ],
+                  "icon-allow-overlap": true,
+                  "icon-size": 0.15,
                 }}
-                circleOnClick={handleCircleClick}
+                symbolOnClick={handleCircleClick}
               />
 
               {currentHotel && (
