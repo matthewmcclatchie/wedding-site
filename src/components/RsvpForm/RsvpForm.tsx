@@ -47,13 +47,21 @@ export const RsvpForm: React.FC = () => {
     setRsvps(rsvps.filter((rsvp) => rsvp !== target))
   }
 
+  const resetForm = () => {
+    setFetchStatus("initial")
+  }
+
   useEffect(() => {
     addRsvp()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section id="rsvp" className={styles.background}>
-      <div className={styles.wrapper}>
+      <div
+        className={classNames(styles.wrapper, {
+          [styles.wrapperCentered]: fetchStatus !== "initial",
+        })}
+      >
         <div className={styles.intro}>
           <h2 className={styles.title}>RSVP</h2>
           <p>
@@ -69,64 +77,92 @@ export const RsvpForm: React.FC = () => {
         </div>
 
         <div className={styles.main}>
-          {fetchStatus === "pending" && <p>Is currently loading...</p>}
-
-          {fetchStatus === "success" && <p>RSVPs submitted successfully</p>}
-
-          {fetchStatus === "error" && (
-            <p>
-              There was a problem, please check the form and try again, or
-              contact Matt or Steph
-            </p>
+          {fetchStatus === "pending" && (
+            <div className={styles.message}>
+              <svg
+                version="1.1"
+                className={styles.messageLoadingIcon}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 80 80"
+              >
+                <path
+                  id="spinner"
+                  d="M40,72C22.4,72,8,57.6,8,40C8,22.4, 22.4,8,40,8c17.6,0,32,14.4,32,32c0,1.1-0.9,2-2,2 s-2-0.9-2-2c0-15.4-12.6-28-28-28S12,24.6,12,40s12.6, 28,28,28c1.1,0,2,0.9,2,2S41.1,72,40,72z"
+                ></path>
+              </svg>
+              <p>
+                <strong>Hold on a sec...</strong>
+              </p>
+            </div>
           )}
 
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            {rsvps.map((rsvp, index) => {
-              return (
-                <Rsvp
-                  key={rsvp}
-                  id={rsvp}
-                  register={register}
-                  errors={errors[rsvp]}
-                  trigger={trigger}
-                  handleRemove={removeRsvp}
-                  getValues={getValues}
-                  index={index}
-                />
-              )
-            })}
-
-            {hasErrors && (
-              <p className={styles.errors}>
-                Please fix the errors above to submit
+          {fetchStatus === "success" && (
+            <div className={styles.message}>
+              <p>
+                🎉 <strong>Thank you very much!</strong>
               </p>
-            )}
-
-            <div
-              className={classNames({
-                [styles.controlsMutliple]: Boolean(rsvps.length),
-              })}
-            >
-              <button
-                type="button"
-                className={styles.controlAdd}
-                onClick={addRsvp}
-              >
-                {rsvps.length ? "Add another guest" : "Add a guest"}
-              </button>
-              {Boolean(rsvps.length) && (
-                <button
-                  className={styles.controlSubmit}
-                  disabled={fetchStatus === "pending"}
-                  type="submit"
-                >
-                  {rsvps.length > 1
-                    ? `Send ${rsvps.length} RSVPs`
-                    : "Send RSVP"}
-                </button>
-              )}
+              <p>Your RSVP has been sent.</p>
             </div>
-          </form>
+          )}
+
+          {fetchStatus === "error" && (
+            <div className={styles.message}>
+              <p>Oh no, there was a problem! 😩</p>
+              <p>
+                Please check the form and try again, or contact Matt or Steph.
+              </p>
+              <button className={styles.controlSubmit} onClick={resetForm}>
+                Try again
+              </button>
+            </div>
+          )}
+
+          {fetchStatus === "initial" && (
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
+              {rsvps.map((rsvp, index) => {
+                return (
+                  <Rsvp
+                    key={rsvp}
+                    id={rsvp}
+                    register={register}
+                    errors={errors[rsvp]}
+                    trigger={trigger}
+                    handleRemove={removeRsvp}
+                    getValues={getValues}
+                    index={index}
+                  />
+                )
+              })}
+
+              {hasErrors && (
+                <p className={styles.errors}>
+                  Please fix the errors above to submit
+                </p>
+              )}
+
+              <div
+                className={classNames({
+                  [styles.controlsMutliple]: Boolean(rsvps.length),
+                })}
+              >
+                <button
+                  type="button"
+                  className={styles.controlAdd}
+                  onClick={addRsvp}
+                >
+                  {rsvps.length ? "Add another guest" : "Add a guest"}
+                </button>
+
+                {Boolean(rsvps.length) && (
+                  <button className={styles.controlSubmit} type="submit">
+                    {rsvps.length > 1
+                      ? `Send ${rsvps.length} RSVPs`
+                      : "Send RSVP"}
+                  </button>
+                )}
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </section>
