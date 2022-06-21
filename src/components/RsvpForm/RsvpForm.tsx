@@ -1,6 +1,6 @@
+import { useEffect, useState, useRef } from "react"
 import classNames from "classnames"
 import { nanoid } from "nanoid"
-import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Rsvp } from "../Rsvp"
 import { prepareRsvpData } from "../../utils/rsvp"
@@ -18,6 +18,10 @@ export const RsvpForm: React.FC = () => {
   const [rsvps, setRsvps] = useState<string[]>([])
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>("initial")
   const hasErrors = Object.keys(errors).length > 0
+  const rsvpRef = useRef<HTMLDivElement>(null)
+
+  const executeScroll = () =>
+    rsvpRef.current && rsvpRef.current.scrollIntoView()
 
   const onSubmit = async (data: any) => {
     setFetchStatus("pending")
@@ -55,9 +59,15 @@ export const RsvpForm: React.FC = () => {
     addRsvp()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    console.log("hello")
+    executeScroll()
+  }, [fetchStatus])
+
   return (
     <section id="rsvp" className={styles.background}>
       <div
+        ref={rsvpRef}
         className={classNames(styles.wrapper, {
           [styles.wrapperCentered]: fetchStatus !== "initial",
         })}

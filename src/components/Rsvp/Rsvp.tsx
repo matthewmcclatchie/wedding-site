@@ -152,7 +152,7 @@ export const Rsvp: React.FC<RsvpProps> = ({
         <div className={classNames(styles.field, styles.fieldRadio)}>
           <div>
             <label className={styles.fieldRadioLabel}>
-              Will you be attending?
+              Will they be attending?
             </label>
             {errors?.attending && (
               <p className={styles.errorText}>

@@ -109,6 +109,7 @@ input[type="text"],
 input[type="email"],
 textarea {
   display: block;
+  font-size: 1rem;
 }
 
 input[type="text"],
