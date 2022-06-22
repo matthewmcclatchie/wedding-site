@@ -60,7 +60,6 @@ export const RsvpForm: React.FC = () => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    console.log("hello")
     executeScroll()
   }, [fetchStatus])
 
