@@ -54,11 +54,13 @@ const sendResponse = (
 
 export const handler: APIGatewayProxyHandler = async (event) => {
   try {
+    console.log("Start rsvpHandler lambda")
     const origin = ALLOWED_ORIGINS.find(
       (origin) => origin === event.headers.origin
     )
 
     if (!origin) {
+      console.log(`Unauthorised origin of ${event.headers.origin}`)
       return {
         statusCode: 401,
         headers: {
@@ -70,6 +72,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     }
 
     if (!process.env.CLIENT_EMAIL || !process.env.PRIVATE_KEY) {
+      console.log("Missing API environment variables")
       return {
         statusCode: 400,
         headers: {
@@ -83,6 +86,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     const { body } = event
 
     if (!body) {
+      console.log("Missing request body")
       return {
         statusCode: 400,
         headers: {
@@ -93,13 +97,16 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       }
     }
 
+    console.log("Instantiating GoogleSpreadsheet")
     const doc = new GoogleSpreadsheet(DOCUMENT_ID)
 
+    console.log("Setting up GoogleSpreadsheet auth")
     await doc.useServiceAccountAuth({
       client_email: process.env.CLIENT_EMAIL!,
       private_key: process.env.PRIVATE_KEY!.replace(/\\n/g, "\n"),
     })
 
+    console.log("Loading document info")
     await doc.loadInfo()
 
     const sheet = doc.sheetsById[SHEET_ID]
@@ -108,12 +115,16 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
     const existingEmails = []
 
+    console.log("Start adding entries to spreadsheet")
     for (const entry of parsed) {
       const { name, email, attending, song, meal, dietary } = entry
       const requiredFields = { name, email }
       const emptyRequiredFields = getAnyEmptyRequiredFields(requiredFields)
 
       if (emptyRequiredFields.length) {
+        console.log(
+          `Missing ${emptyRequiredFields.join(", ")} from request body`
+        )
         return {
           statusCode: 400,
           headers: {
@@ -150,6 +161,9 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       })
     }
 
+    console.log("Finished adding entries to spreadsheet")
+    console.log("Define SNS parameters")
+
     const snsParams = {
       Subject: "Somebody has filled out the RSVP form!",
       Message: `
@@ -170,8 +184,10 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       TopicArn: SNS_TOPIC_ARN,
     }
 
+    console.log("Publish to SNS")
     await publishToTopic(snsParams)
 
+    console.log("Send lambda response")
     return sendResponse(existingEmails, origin)
   } catch (error) {
     throw new Error(JSON.stringify(error))
