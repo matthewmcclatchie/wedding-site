@@ -127,7 +127,7 @@ export class WeddingSiteStack extends Stack {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: path.join("lambda", "rsvp", "index.ts"),
       handler: "handler",
-      timeout: Duration.seconds(5),
+      timeout: Duration.seconds(30),
       logRetention: logs.RetentionDays.FIVE_DAYS,
       environment: {
         CLIENT_EMAIL: weddingSiteGoogleApiCredentials
@@ -151,29 +151,29 @@ export class WeddingSiteStack extends Stack {
       })
     )
 
-    const contactHandler = new lambdaNode.NodejsFunction(
-      this,
-      "ContactHandler",
-      {
-        runtime: lambda.Runtime.NODEJS_14_X,
-        entry: path.join("lambda", "contact", "index.ts"),
-        handler: "handler",
-        timeout: Duration.seconds(5),
-        logRetention: logs.RetentionDays.FIVE_DAYS,
-        bundling: {
-          minify: true,
-          externalModules: ["aws-sdk"],
-        },
-      }
-    )
+    // const contactHandler = new lambdaNode.NodejsFunction(
+    //   this,
+    //   "ContactHandler",
+    //   {
+    //     runtime: lambda.Runtime.NODEJS_14_X,
+    //     entry: path.join("lambda", "contact", "index.ts"),
+    //     handler: "handler",
+    //     timeout: Duration.seconds(30),
+    //     logRetention: logs.RetentionDays.FIVE_DAYS,
+    //     bundling: {
+    //       minify: true,
+    //       externalModules: ["aws-sdk"],
+    //     },
+    //   }
+    // )
 
-    contactHandler.addToRolePolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: ["ses:SendEmail", "ses:SendRawEmail"],
-        resources: ["*"],
-      })
-    )
+    // contactHandler.addToRolePolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     actions: ["ses:SendEmail", "ses:SendRawEmail"],
+    //     resources: ["*"],
+    //   })
+    // )
 
     // CloudWatch Alarms
     const RsvpHandlerErrors = rsvpHandler.metricErrors({
@@ -190,19 +190,19 @@ export class WeddingSiteStack extends Stack {
         "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
     })
 
-    const ContactHandlerErrors = contactHandler.metricErrors({
-      period: Duration.minutes(1),
-    })
+    // const ContactHandlerErrors = contactHandler.metricErrors({
+    //   period: Duration.minutes(1),
+    // })
 
-    new cloudwatch.Alarm(this, "ContactHandlerErrorsAlarm", {
-      metric: ContactHandlerErrors,
-      threshold: 1,
-      comparisonOperator:
-        cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
-      evaluationPeriods: 1,
-      alarmDescription:
-        "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
-    })
+    // new cloudwatch.Alarm(this, "ContactHandlerErrorsAlarm", {
+    //   metric: ContactHandlerErrors,
+    //   threshold: 1,
+    //   comparisonOperator:
+    //     cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+    //   evaluationPeriods: 1,
+    //   alarmDescription:
+    //     "Alarm if the SUM of Errors is greater than or equal to the threshold (1) for 1 evaluation period",
+    // })
 
     // API Gateway
     const api = new apiGateway.RestApi(this, "WeddingSiteEndpoint", {
@@ -227,8 +227,8 @@ export class WeddingSiteStack extends Stack {
     const rsvp = api.root.addResource("rsvp")
     rsvp.addMethod("POST", new apiGateway.LambdaIntegration(rsvpHandler))
 
-    const contact = api.root.addResource("contact")
-    contact.addMethod("POST", new apiGateway.LambdaIntegration(contactHandler))
+    // const contact = api.root.addResource("contact")
+    // contact.addMethod("POST", new apiGateway.LambdaIntegration(contactHandler))
 
     // SNS
     const rsvpTopic = new sns.Topic(this, "WeddingSiteRsvpTopic", {
