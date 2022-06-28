@@ -4,7 +4,7 @@ import classNames from "classnames"
 import styles from "./Hero.module.css"
 
 const event = {
-  title: "😘 Steph and Matt's Wedding!",
+  title: "😘 Steph & Matt's Wedding!",
   description: "Wedding and Reception at Middleton Lodge Estate",
   startTime: "2022-10-09T12:30:00",
   endTime: "2022-10-09T23:59:00",
@@ -16,7 +16,7 @@ const raw = `
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:😘 Steph and Matt's Wedding!
+DESCRIPTION:😘 Steph & Matt's Wedding!
 END:VALARM
 `
 
@@ -24,17 +24,17 @@ export const Hero: React.FC = () => {
   return (
     <div id="hero" className={styles.background}>
       <img
-        src="leaf-watermark.png"
+        src="leaf.png"
         alt="Fig leaf"
         className={classNames(styles.leaf, styles.leaf1)}
       />
       <img
-        src="leaf-watermark.png"
+        src="leaf.png"
         alt="Fig leaf"
         className={classNames(styles.leaf, styles.leaf2)}
       />
       <img
-        src="leaf-watermark.png"
+        src="leaf.png"
         alt="Fig leaf"
         className={classNames(styles.leaf, styles.leaf3)}
       />

@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
           <a href="mailto:mattandstephgetwed@gmail.com">Email us</a> or message
           on Whatsapp
         </p>
-        <p>Steph + Matt xx</p>
+        <p>Steph &amp; Matt xx</p>
       </div>
     </div>
   )
