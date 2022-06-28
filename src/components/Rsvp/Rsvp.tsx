@@ -144,97 +144,129 @@ export const Rsvp: React.FC<RsvpProps> = ({
           )}
           {errors?.email?.type === "pattern" && (
             <p className={styles.errorText}>
-              🤔 Please check the email, it doesn't look quite right...
+              Please check the email, it doesn't look quite right...
             </p>
           )}
         </div>
 
         <div className={classNames(styles.field, styles.fieldRadio)}>
-          <div>
-            <label className={styles.fieldRadioLabel}>
-              Will they be attending?
-            </label>
-            {errors?.attending && (
-              <p className={styles.errorText}>
-                Please select an option &nbsp;👉
-              </p>
-            )}
+          <label>Will they be attending?</label>
+
+          <div className={styles.fieldRadioOptions}>
+            <div className={styles.fieldRadioOption}>
+              <input
+                {...register(`${id}.attending`, { required: true })}
+                type="radio"
+                value="true"
+                id={`${id}.attending.yes`}
+                onChange={handleAttending}
+                className={styles.fieldRadioOptionInput}
+              />
+              <label
+                className={styles.fieldRadioOptionLabel}
+                htmlFor={`${id}.attending.yes`}
+              >
+                🎉 &nbsp;Yes
+              </label>
+            </div>
+
+            <div className={styles.fieldRadioOption}>
+              <input
+                {...register(`${id}.attending`, { required: true })}
+                type="radio"
+                value="false"
+                id={`${id}.attending.no`}
+                onChange={handleAttending}
+                className={styles.fieldRadioOptionInput}
+              />
+              <label
+                className={styles.fieldRadioOptionLabel}
+                htmlFor={`${id}.attending.no`}
+              >
+                😢 &nbsp;No
+              </label>
+            </div>
           </div>
 
-          <div className={styles.fieldRadioInputs}>
-            <input
-              {...register(`${id}.attending`, { required: true })}
-              type="radio"
-              value="true"
-              id={`${id}.attending.yes`}
-              onChange={handleAttending}
-            />
-            <label htmlFor={`${id}.attending.yes`}>🎉 &nbsp;Yes</label>
-
-            <input
-              {...register(`${id}.attending`, { required: true })}
-              type="radio"
-              value="false"
-              id={`${id}.attending.no`}
-              onChange={handleAttending}
-            />
-            <label htmlFor={`${id}.attending.no`}>😢 &nbsp;No</label>
-          </div>
+          {errors?.attending && (
+            <p className={styles.errorText}>👆 Please select an option</p>
+          )}
         </div>
 
         {attending && (
           <>
-            <div
-              className={classNames(
-                styles.field,
-                styles.fieldRadio,
-                styles.fieldRadioLong
+            <div className={classNames(styles.field, styles.fieldRadio)}>
+              <label>Meal preference</label>
+
+              <div className={styles.fieldRadioOptions}>
+                <div className={styles.fieldRadioOption}>
+                  <input
+                    {...register(`${id}.meal`, { required: true })}
+                    type="radio"
+                    value="Meat"
+                    id={`${id}.meal.meat`}
+                    className={styles.fieldRadioOptionInput}
+                  />
+                  <label
+                    className={styles.fieldRadioOptionLabel}
+                    htmlFor={`${id}.meal.meat`}
+                  >
+                    Meat
+                  </label>
+                </div>
+
+                <div className={styles.fieldRadioOption}>
+                  <input
+                    {...register(`${id}.meal`, { required: true })}
+                    type="radio"
+                    value="Veggie"
+                    id={`${id}.meal.veggie`}
+                    className={styles.fieldRadioOptionInput}
+                  />
+                  <label
+                    className={styles.fieldRadioOptionLabel}
+                    htmlFor={`${id}.meal.veggie`}
+                  >
+                    Veggie
+                  </label>
+                </div>
+
+                <div className={styles.fieldRadioOption}>
+                  <input
+                    {...register(`${id}.meal`, { required: true })}
+                    type="radio"
+                    value="Vegan"
+                    id={`${id}.meal.vegan`}
+                    className={styles.fieldRadioOptionInput}
+                  />
+                  <label
+                    className={styles.fieldRadioOptionLabel}
+                    htmlFor={`${id}.meal.vegan`}
+                  >
+                    Vegan
+                  </label>
+                </div>
+
+                <div className={styles.fieldRadioOption}>
+                  <input
+                    {...register(`${id}.meal`, { required: true })}
+                    type="radio"
+                    value="Kids"
+                    id={`${id}.meal.kids`}
+                    className={styles.fieldRadioOptionInput}
+                  />
+                  <label
+                    className={styles.fieldRadioOptionLabel}
+                    htmlFor={`${id}.meal.kids`}
+                  >
+                    Kids
+                  </label>
+                </div>
+              </div>
+
+              {errors?.meal && (
+                <p className={styles.errorText}>👆 Please select an option</p>
               )}
-            >
-              <div>
-                <label className={styles.fieldRadioLabel}>
-                  Meal preference
-                </label>
-                {errors?.meal && (
-                  <p className={styles.errorText}>
-                    Please select your preference &nbsp;👆
-                  </p>
-                )}
-              </div>
-
-              <div className={styles.fieldRadioInputs}>
-                <input
-                  {...register(`${id}.meal`, { required: true })}
-                  type="radio"
-                  value="Meat"
-                  id={`${id}.meal.meat`}
-                />
-                <label htmlFor={`${id}.meal.meat`}>Meat</label>
-
-                <input
-                  {...register(`${id}.meal`, { required: true })}
-                  type="radio"
-                  value="Veggie"
-                  id={`${id}.meal.veggie`}
-                />
-                <label htmlFor={`${id}.meal.veggie`}>Veggie</label>
-
-                <input
-                  {...register(`${id}.meal`, { required: true })}
-                  type="radio"
-                  value="Vegan"
-                  id={`${id}.meal.vegan`}
-                />
-                <label htmlFor={`${id}.meal.vegan`}>Vegan</label>
-
-                <input
-                  {...register(`${id}.meal`, { required: true })}
-                  type="radio"
-                  value="Kids"
-                  id={`${id}.meal.kids`}
-                />
-                <label htmlFor={`${id}.meal.kids`}>Kids</label>
-              </div>
             </div>
 
             <div className={styles.field}>

@@ -75,14 +75,14 @@ export const RsvpForm: React.FC = () => {
         <div className={styles.intro}>
           <h2 className={styles.title}>RSVP</h2>
           <p>
-            We'd love to have our numbers confirmed by the beginning of{" "}
+            We'd love to have our number of guests confirmed by the beginning of{" "}
             <strong>August.</strong>
           </p>
           <p>
-            Please respond for each member of your party in the form, so that we
-            can confirm final numbers and any dietary requirements.
+            Please respond for <u>each member</u> of your party in the form, so
+            that we can confirm final numbers and any dietary requirements.
           </p>
-          <p>Contact Matt or Steph if you have any problems.</p>
+          <p>Contact Steph or Matt if you have any problems.</p>
           <p>We can't wait to see you!</p>
         </div>
 
