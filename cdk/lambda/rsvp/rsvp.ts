@@ -122,7 +122,6 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         name,
         email,
         attending,
-        attendingType: typeof attending,
         song,
         meal,
         dietary,
