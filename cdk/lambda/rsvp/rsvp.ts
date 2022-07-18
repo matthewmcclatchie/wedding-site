@@ -118,6 +118,15 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     console.log("Start adding entries to spreadsheet")
     for (const entry of parsed) {
       const { name, email, attending, song, meal, dietary } = entry
+      console.table({
+        name,
+        email,
+        attending,
+        attendingType: typeof attending,
+        song,
+        meal,
+        dietary,
+      })
       const requiredFields = { name, email }
       const emptyRequiredFields = getAnyEmptyRequiredFields(requiredFields)
 
