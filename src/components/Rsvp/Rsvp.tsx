@@ -23,11 +23,11 @@ export const Rsvp: React.FC<RsvpProps> = ({
   getValues,
   index,
 }) => {
-  const [attending, setAttending] = useState<string>("false")
+  const [attending, setAttending] = useState<boolean>(false)
   const [expanded, setExpanded] = useState<boolean>(true)
 
   const handleAttending = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAttending(event.target.value)
+    setAttending(event.target.value === "true" ? true : false)
     trigger(`${id}.attending`)
   }
 
@@ -150,11 +150,13 @@ export const Rsvp: React.FC<RsvpProps> = ({
           <div className={styles.fieldRadioOptions}>
             <div className={styles.fieldRadioOption}>
               <input
-                {...register(`${id}.attending`, { required: true })}
+                {...register(`${id}.attending`, {
+                  required: true,
+                  onChange: (e) => handleAttending(e),
+                })}
                 type="radio"
                 value="true"
                 id={`${id}.attending.yes`}
-                onChange={handleAttending}
                 className={styles.fieldRadioOptionInput}
               />
               <label
@@ -167,11 +169,13 @@ export const Rsvp: React.FC<RsvpProps> = ({
 
             <div className={styles.fieldRadioOption}>
               <input
-                {...register(`${id}.attending`, { required: true })}
+                {...register(`${id}.attending`, {
+                  required: true,
+                  onChange: (e) => handleAttending(e),
+                })}
                 type="radio"
                 value="false"
                 id={`${id}.attending.no`}
-                onChange={handleAttending}
                 className={styles.fieldRadioOptionInput}
               />
               <label
@@ -187,7 +191,7 @@ export const Rsvp: React.FC<RsvpProps> = ({
             <p className={styles.errorText}>👆 Please select an option</p>
           )}
         </div>
-        {attending === "true" && (
+        {attending && (
           <>
             <div className={classNames(styles.field, styles.fieldRadio)}>
               <label>Meal preference</label>
