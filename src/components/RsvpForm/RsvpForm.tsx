@@ -26,8 +26,6 @@ export const RsvpForm: React.FC = () => {
   const onSubmit = async (data: any) => {
     setFetchStatus("pending")
 
-    console.log(prepareRsvpData(data))
-
     try {
       await fetch(`${process.env.REACT_APP_CLOUDFRONT_URL}/rsvp`, {
         method: "POST",

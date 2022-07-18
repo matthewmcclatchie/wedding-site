@@ -1,7 +1,7 @@
 interface Rsvp {
   name: string
   email: string
-  attending: boolean
+  attending: string
   song?: string
   meal?: string
   dietary?: string

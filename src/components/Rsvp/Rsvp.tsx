@@ -23,11 +23,11 @@ export const Rsvp: React.FC<RsvpProps> = ({
   getValues,
   index,
 }) => {
-  const [attending, setAttending] = useState<boolean>(false)
+  const [attending, setAttending] = useState<string>("false")
   const [expanded, setExpanded] = useState<boolean>(true)
 
   const handleAttending = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAttending(event.target.value === "true" ? true : false)
+    setAttending(event.target.value)
     trigger(`${id}.attending`)
   }
 
@@ -75,7 +75,6 @@ export const Rsvp: React.FC<RsvpProps> = ({
           </svg>
         )}
       </button>
-
       {!expanded && (
         <div>
           <p>
@@ -93,7 +92,6 @@ export const Rsvp: React.FC<RsvpProps> = ({
           )}
         </div>
       )}
-
       <button
         className={styles.remove}
         type="button"
@@ -108,7 +106,6 @@ export const Rsvp: React.FC<RsvpProps> = ({
           <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
         </svg>
       </button>
-
       <div
         className={classNames(styles.fields, {
           [styles.fieldsExpanded]: expanded,
@@ -127,7 +124,6 @@ export const Rsvp: React.FC<RsvpProps> = ({
             <p className={styles.errorText}>👆 Guest name is required</p>
           )}
         </div>
-
         <div className={styles.field}>
           <label htmlFor={`${id}.email`}>Email</label>
           <input
@@ -148,7 +144,6 @@ export const Rsvp: React.FC<RsvpProps> = ({
             </p>
           )}
         </div>
-
         <div className={classNames(styles.field, styles.fieldRadio)}>
           <label>Will they be attending?</label>
 
@@ -192,8 +187,7 @@ export const Rsvp: React.FC<RsvpProps> = ({
             <p className={styles.errorText}>👆 Please select an option</p>
           )}
         </div>
-
-        {attending && (
+        {attending === "true" && (
           <>
             <div className={classNames(styles.field, styles.fieldRadio)}>
               <label>Meal preference</label>
