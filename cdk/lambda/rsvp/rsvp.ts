@@ -158,9 +158,9 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
     const snsParams = {
       Subject: "Somebody has filled out the RSVP form!",
-      Message: `${parsed[0].name} filled out the RSVP form and added
-        ${parsed.length}
-        ${parsed.length > 1 ? "entries" : "entry"}. `,
+      Message: `${parsed[0].name} filled out the RSVP form and added ${
+        parsed.length
+      } ${parsed.length > 1 ? "entries" : "entry"}. `,
       TopicArn: SNS_TOPIC_ARN,
     }
 
