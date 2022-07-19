@@ -38,17 +38,14 @@ const publishToTopic = async (
   console.log("MessageID: " + data.MessageId)
 }
 
-const sendResponse = (
-  existingEmails: string[],
-  origin: typeof ALLOWED_ORIGINS[number]
-) => {
+const sendResponse = (origin: typeof ALLOWED_ORIGINS[number]) => {
   return {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": origin,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message: "RSVP - Success", existingEmails }),
+    body: JSON.stringify({ message: "RSVP - Success" }),
   }
 }
 
@@ -113,8 +110,6 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
     const parsed = JSON.parse(body)
 
-    const existingEmails = []
-
     console.log("Start adding entries to spreadsheet")
     for (const entry of parsed) {
       const { name, email, attending, song, meal, dietary } = entry
@@ -145,17 +140,6 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         }
       }
 
-      const rows = await sheet.getRows()
-
-      const emails = rows.map((entry) => entry.email)
-
-      const emailFound = emails.includes(email)
-
-      if (emailFound) {
-        existingEmails.push(email)
-        continue
-      }
-
       const now = new Date()
 
       await sheet.addRow({
@@ -174,21 +158,9 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
     const snsParams = {
       Subject: "Somebody has filled out the RSVP form!",
-      Message: `
-        ${parsed[0].name} filled out the RSVP form.
-
-        ${
-          Boolean(parsed.length - existingEmails.length)
-            ? `Entries added: ${parsed.length - existingEmails.length}`
-            : "There were no new entries"
-        }
-
-        ${
-          existingEmails.length
-            ? `Existing entries: ${existingEmails.length}`
-            : "There were no existing entries"
-        }
-      `,
+      Message: `${parsed[0].name} filled out the RSVP form and added
+        ${parsed.length}
+        ${parsed.length > 1 ? "entries" : "entry"}. `,
       TopicArn: SNS_TOPIC_ARN,
     }
 
@@ -196,7 +168,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     await publishToTopic(snsParams)
 
     console.log("Send lambda response")
-    return sendResponse(existingEmails, origin)
+    return sendResponse(origin)
   } catch (error) {
     throw new Error(JSON.stringify(error))
   }
